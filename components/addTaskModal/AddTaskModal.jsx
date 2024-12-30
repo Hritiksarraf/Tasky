@@ -49,6 +49,7 @@ const AddTaskModal = ({ isEditMode, taskData, onClose, onSuccess, user }) => {
             if (response.ok) {
                 const message = isEditMode ? "Task updated successfully" : "Task added successfully";
                 alert(message);
+                window.location.reload();
                 
             } else {
                 throw new Error("An error occurred while submitting the task");

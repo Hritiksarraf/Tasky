@@ -45,7 +45,8 @@ export default function TaskCard({
             if (response.ok) {
                 const data = await response.json();
                 alert("Task deleted successfully!");
-                onTaskUpdate(); // Refresh the tasks list
+                window.location.reload();
+                
             } else {
                 const errorData = await response.json();
                 alert(`Failed to delete task: ${errorData.error}`);
