@@ -4,8 +4,7 @@ import TaskCard from "@/components/taskCard/TaskCard";
 import AddTaskModal from "@/components/addTaskModal/AddTaskModal";
 import { useRouter } from "next/navigation";
 import jwt from "jsonwebtoken";
-import Select from "react-select"; // Import react-select for custom dropdowns
-import { FaSort, FaSortAmountDownAlt, FaSortAmountUpAlt } from "react-icons/fa"; // Icons for sorting
+import Select from "react-select"; 
 
 export default function Page() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -21,7 +20,7 @@ export default function Page() {
         status: "",
         priority: "",
     });
-    const [loading, setLoading] = useState(true); // Added loading state to handle SSR hydration issue
+    const [loading, setLoading] = useState(true); 
     const router = useRouter();
 
     // Only fetch data after the component has mounted (to avoid SSR issues with localStorage)
@@ -34,7 +33,7 @@ export default function Page() {
         } else {
             router.push("/");
         }
-        setLoading(false); // Set loading to false after component has mounted
+        setLoading(false); 
     }, []);
 
     const fetchTasks = async (userid) => {
@@ -52,7 +51,7 @@ export default function Page() {
             }
 
             const data = await response.json();
-            setTasks(data); // Set fetched tasks to state
+            setTasks(data); 
             setFilteredTasks(data); // Initialize filteredTasks with all tasks
         } catch (error) {
             console.error("Error fetching tasks:", error);
@@ -66,7 +65,7 @@ export default function Page() {
     };
 
     const handleSuccess = () => {
-        // Refresh the task list after adding or editing a task
+       
         fetchTasks(user.userid);
     };
 

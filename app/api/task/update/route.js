@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import Task from "@/lib/models/todo"; // Adjust path to your model
-import { connectToDB } from "@/lib/mongodb/mongoose"; // Ensure DB connection
+import Task from "@/lib/models/todo"; 
+import { connectToDB } from "@/lib/mongodb/mongoose"; 
 
 export async function PUT(req) {
     try {

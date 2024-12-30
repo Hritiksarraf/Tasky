@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import AddTaskModal from '@/components/addTaskModal/AddTaskModal'; // Adjust the path as needed
-import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'; // Adjusted for Heroicons v2
+import AddTaskModal from '@/components/addTaskModal/AddTaskModal'; 
+import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'; 
 import axios from 'axios';
 
 export default function TaskCard({
@@ -17,7 +17,7 @@ export default function TaskCard({
 }) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-    // Format date and time
+   
     const formatDateTime = (dateTime) => {
         const options = { 
             weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', 
@@ -26,12 +26,12 @@ export default function TaskCard({
         return new Date(dateTime).toLocaleDateString('en-US', options);
     };
 
-    // Handle Edit button click
+   
     const handleEdit = () => {
         setIsEditModalOpen(true);
     };
 
-    // Handle Delete button click
+    
     const handleDelete = async () => {
         try {
             const response = await fetch(`/api/task/delete`, {
@@ -39,7 +39,7 @@ export default function TaskCard({
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ _id, userId: user.userid }), // Include user ID
+                body: JSON.stringify({ _id, userId: user.userid }), 
             });
     
             if (response.ok) {
@@ -59,15 +59,15 @@ export default function TaskCard({
 
     return (
         <div className="flex flex-col p-6 bg-white rounded-lg shadow-md w-full max-w-md">
-            {/* Task ID */}
+            
             <p className="text-xs text-gray-400 mb-2">
                 Task ID: {_id}
             </p>
 
-            {/* Task Title */}
+            
             <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
 
-            {/* Task Status and Priority in a Row */}
+           
             <div className="flex items-center justify-between space-x-4 mb-4">
                 <div className="flex items-center space-x-2">
                     <span
@@ -99,7 +99,7 @@ export default function TaskCard({
                 </div>
             </div>
 
-            {/* Task Details */}
+           
             <div className="text-sm text-gray-600 mb-4 space-y-1">
                 <p className="flex items-center">
                     <CalendarIcon className="h-5 w-5 text-gray-500 mr-2" />
@@ -113,7 +113,7 @@ export default function TaskCard({
                 </p>
             </div>
 
-            {/* Action Buttons */}
+          
             <div className="flex justify-between">
                 <button
                     onClick={handleEdit}
@@ -129,7 +129,7 @@ export default function TaskCard({
                 </button>
             </div>
 
-            {/* AddTaskModal for editing */}
+           
             {isEditModalOpen && (
                 <AddTaskModal
                     isEditMode={true}
@@ -145,7 +145,7 @@ export default function TaskCard({
                     onClose={() => setIsEditModalOpen(false)}
                     onSuccess={() => {
                         setIsEditModalOpen(false);
-                        onTaskUpdate(); // Refresh the tasks list
+                        
                     }}
                 />
             )}

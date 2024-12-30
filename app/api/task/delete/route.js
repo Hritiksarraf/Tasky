@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Task from "@/lib/models/todo"; // Adjust the path if needed
-import User from "@/lib/models/User"; // Import your user model
-import { connectToDB } from "@/lib/mongodb/mongoose"; // Ensure you have a database connection utility
+import Task from "@/lib/models/todo"; 
+import User from "@/lib/models/User"; 
+import { connectToDB } from "@/lib/mongodb/mongoose";
 
 export async function DELETE(req) {
   try {
-    // Parse the incoming request body
+    
     const { _id, userId } = await req.json();
 
-    // Validate required fields
+    
     if (!_id || !userId) {
       return NextResponse.json(
         { error: "Task ID and User ID are required" },
@@ -17,7 +17,6 @@ export async function DELETE(req) {
       );
     }
 
-    // Connect to the database
     await connectToDB();
 
     // Delete the task from the Task collection

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import Task from "@/lib/models/todo"; // Adjust the path if needed
-import User from "@/lib/models/User"; // Adjust the path if needed
+import Task from "@/lib/models/todo";
+import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongodb/mongoose";
 
 export async function POST(req) {
@@ -8,23 +8,23 @@ export async function POST(req) {
     await connectToDB();
     const { userid } = await req.json();
 
-    // Fetch the user document
+    
     const user = await User.findById(userid);
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    // Fetch and serialize tasks
+    
     const tasks = await Task.find({ _id: { $in: user.tasks } });
     const serializedTasks = tasks.map((task) => ({
       ...task.toObject(),
       _id: task._id.toString(),
     }));
 
-    // Current time for calculations
+    
     const currentTime = new Date();
 
-    // Stats calculations
+   
     const totalTasks = serializedTasks.length;
     const completedTasks = serializedTasks.filter((task) => task.status === "finished");
     const pendingTasks = serializedTasks.filter((task) => task.status !== "finished");
@@ -38,7 +38,7 @@ export async function POST(req) {
       ? completedTasks.reduce((acc, task) => {
           const startTime = new Date(task.startTime);
           const endTime = new Date(task.endTime);
-          return acc + (endTime - startTime) / (1000 * 60 * 60); // Convert ms to hours
+          return acc + (endTime - startTime) / (1000 * 60 * 60); 
         }, 0) / completedTasks.length
       : 0;
 

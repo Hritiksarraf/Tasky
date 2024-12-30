@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Task from "@/lib/models/todo"; // Adjust the path if needed
-import User from "@/lib/models/User"; // Import your user model
-import { connectToDB } from "@/lib/mongodb/mongoose"; // Ensure you have a database connection utility
+import Task from "@/lib/models/todo"; 
+import User from "@/lib/models/User"; 
+import { connectToDB } from "@/lib/mongodb/mongoose"; 
 
-// Database connection (if not already implemented)
+
 await connectToDB();
 
 export async function POST(req) {
   try {
-    // Parse the incoming request body
+    
     const data = await req.json();
 
     // Validate required fields
@@ -31,7 +31,7 @@ export async function POST(req) {
       endTime,
     });
 
-    // Save the task to the database
+    
     const savedTask = await newTask.save();
 
     // Find the user by ID and add the task ID to their tasks array
@@ -43,7 +43,7 @@ export async function POST(req) {
       );
     }
 
-    // Use the correct field name (tasks)
+    
     userDoc.tasks.push(savedTask._id);
     await userDoc.save();
 

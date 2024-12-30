@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import jwt from "jsonwebtoken"; // Ensure jwt is installed
+import jwt from "jsonwebtoken"; 
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import PendingIcon from "@mui/icons-material/Pending";
@@ -30,7 +30,7 @@ export default function Page() {
         const data = await response.json();
         console.log(data)
 
-        // Process data for rendering
+        
         setSummaryData([
           { icon: AssignmentIcon, value: data.totalSummary.totalTasks, label: "Total Task" },
           {

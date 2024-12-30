@@ -29,7 +29,7 @@ function Home() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Input validation
+    
     if (!validatePhoneNumber(phone)) {
      alert('plese enter 10 digit number')
       return;
@@ -59,7 +59,7 @@ function Home() {
         alert('log-in success')
         localStorage.setItem('token',response.token)
         setTimeout(() => {
-          router.push('/dashboard'); // Redirect to dashboard after login
+          router.push('/dashboard'); 
         }, 2000);
       } else {
         alert('Login Failed')
